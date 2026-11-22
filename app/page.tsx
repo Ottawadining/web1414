@@ -54,23 +54,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------------- how it works */}
-      <section className="border-y border-rule bg-sheet">
-        <div className="wrap grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-rule">
-          {[
-            ["I.", "The editorial order", "We wrote the first list. It is subjective, provisional and entirely ours. Consider it the amuse-bouche, not the verdict."],
-            ["II.", "The community verdict", `Then the dining room takes over. A critic needs ${settings.min_votes} votes before they can be seated in the community ranking.`],
-            ["III.", "The receipts", "Jokes are opinion. Facts get sources. Anything we can't link to a published original doesn't run."],
-          ].map(([n, t, d]) => (
-            <div key={n} className="py-8 md:py-10 md:px-8 first:md:pl-0 last:md:pr-0">
-              <span className="font-serif italic text-tomato text-lg">{n}</span>
-              <h2 className="mt-2 text-2xl">{t}</h2>
-              <p className="mt-3 text-[0.95rem] text-muted leading-relaxed">{d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <HomeRanking initialCritics={critics} initialSettings={settings} />
 
       {/* ---------------------------------------------------------------- closers */}
