@@ -87,16 +87,7 @@ export function CriticView({ slug, initial, initialReceipts = [], initialReplies
             <Portrait critic={critic} size="lg" caption />
           </div>
           <div className="animate-rise [animation-delay:100ms]">
-            <div className="flex flex-wrap gap-2">
-              {critic.editorial_rank && (
-                <span className="px-2 py-1 border border-ink text-[0.625rem] tracking-[0.2em] uppercase font-semibold">Editorial No. {critic.editorial_rank}</span>
-              )}
-              <span className={`px-2 py-1 text-[0.625rem] tracking-[0.2em] uppercase font-semibold ${score.community_rank ? "bg-tomato text-sheet" : "border border-rule text-muted"}`}>
-                {score.community_rank ? `Community No. ${score.community_rank}` : "Community: not yet eligible"}
-              </span>
-              {inTen && <span className="px-2 py-1 bg-ink text-sheet text-[0.625rem] tracking-[0.2em] uppercase font-semibold">In the Ten</span>}
-            </div>
-            {critic.nickname && <p className="mt-6 font-serif italic text-tomato text-2xl md:text-3xl leading-snug">&ldquo;{critic.nickname}&rdquo;</p>}
+            {critic.nickname && <p className="font-serif italic text-tomato text-2xl md:text-3xl leading-snug">&ldquo;{critic.nickname}&rdquo;</p>}
             <h1 className="mt-2 text-5xl sm:text-6xl md:text-[5.5rem] leading-[0.95]" style={{ fontVariationSettings: '"opsz" 96' }}>{critic.name}</h1>
             <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 max-w-lg border-t border-rule pt-5 text-sm">
               <div><dt className="kicker">City</dt><dd className="mt-1">{critic.city ?? <span className="placeholder-note">To be verified</span>}</dd></div>

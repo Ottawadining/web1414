@@ -54,6 +54,9 @@ export function HomeRanking({ initialCritics, initialSettings }: { initialCritic
                     </Link>
                   </div>
                   <div className="min-w-0">
+                    <Link href={`/critics/${c.slug}/`} tabIndex={-1} aria-hidden="true" className="md:hidden block mb-4">
+                      <Portrait critic={c} size="sm" />
+                    </Link>
                     <p className="font-serif italic text-tomato text-lg md:text-xl leading-snug">{c.nickname}</p>
                     <h3 className={`mt-1 leading-[1.02] ${top ? "text-4xl md:text-6xl" : "text-3xl md:text-5xl"}`}>
                       <Link href={`/critics/${c.slug}/`} className="link-under hover:text-ink">{c.name}</Link>
