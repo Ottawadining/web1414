@@ -13,8 +13,7 @@ export function Header() {
   return (
     <header className="border-b border-ink/90">
       <div className="wrap flex items-center justify-between py-2 text-[0.6875rem] tracking-[0.18em] uppercase text-muted border-b border-rule">
-        <span>Satire &amp; opinion · Canada</span>
-        <span className="hidden sm:inline">Reviewing the reviewers since 2026</span>
+        <span>Reviewing the reviewers since 2026</span>
         <HeaderAccount />
       </div>
       <div className="wrap flex flex-col md:flex-row md:items-end md:justify-between gap-3 py-5">

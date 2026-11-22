@@ -17,7 +17,7 @@ export function HomeRanking({ initialCritics, initialSettings }: { initialCritic
   const scores = useScores();
   const settingsQ = useSettings(initialSettings);
   const myVotes = useMyVotes(viewer.user?.id);
-  const { mode, entries, eligibleCount, settings } = computeRanking(critics.data, scores.data, settingsQ.data);
+  const { mode, entries, settings } = computeRanking(critics.data, scores.data, settingsQ.data);
 
   return (
     <>
@@ -25,29 +25,18 @@ export function HomeRanking({ initialCritics, initialSettings }: { initialCritic
       <section id="ranking" className="wrap pt-20 md:pt-28 scroll-mt-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <p className="kicker">{mode === "editorial" ? "The inaugural editorial order" : "The community verdict"}</p>
+            {mode === "community" && <p className="kicker">The community verdict</p>}
             <h2 className="mt-3 text-5xl md:text-7xl" style={{ fontVariationSettings: '"opsz" 96' }}>The Ten</h2>
           </div>
-          <div className="md:max-w-sm md:text-right text-sm text-muted leading-relaxed">
-            {mode === "editorial" ? (
-              <>
-                <span className="inline-block mb-2 px-2 py-1 border border-tomato text-tomato text-[0.625rem] tracking-[0.2em] uppercase font-semibold">Provisional · Editorial</span>
-                <p>
-                  Our opinion, in our order. Not a statistical ranking and not a finding about anyone&rsquo;s competence. The
-                  community order takes over once {settings.community_size} critics have {settings.min_votes}+ votes each
-                  ({eligibleCount} of {settings.community_size} so far). <Link href="/editorial-policy/#scoring" className="underline">How scoring works</Link>.
-                </p>
-              </>
-            ) : (
-              <>
-                <span className="inline-block mb-2 px-2 py-1 bg-tomato text-sheet text-[0.625rem] tracking-[0.2em] uppercase font-semibold">Community · Live</span>
-                <p>
-                  Ranked by the lower bound of the Wilson score interval on each critic&rsquo;s Rotten share, among critics with at
-                  least {settings.min_votes} votes. <Link href="/editorial-policy/#scoring" className="underline">How scoring works</Link>.
-                </p>
-              </>
-            )}
-          </div>
+          {mode === "community" && (
+            <div className="md:max-w-sm md:text-right text-sm text-muted leading-relaxed">
+              <span className="inline-block mb-2 px-2 py-1 bg-tomato text-sheet text-[0.625rem] tracking-[0.2em] uppercase font-semibold">Community · Live</span>
+              <p>
+                Ranked by the lower bound of the Wilson score interval on each critic&rsquo;s Rotten share, among critics with at
+                least {settings.min_votes} votes. <Link href="/editorial-policy/#scoring" className="underline">How scoring works</Link>.
+              </p>
+            </div>
+          )}
         </div>
 
         <ol className="mt-12 border-t border-ink">
