@@ -16,7 +16,9 @@ export function Directory({ initialCritics, initialSettings }: { initialCritics:
   const [q, setQ] = useState("");
   useEffect(() => { setQ(new URLSearchParams(window.location.search).get("q") ?? ""); }, []);
 
-  const inTen = new Map(computeRanking(critics.data, scores.data, settings.data).entries.map((e) => [e.id, e.position]));
+  const ranking = computeRanking(critics.data, scores.data, settings.data);
+  const rankMode = ranking.mode;
+  const inTen = new Map(ranking.entries.map((e) => [e.id, e.position]));
   const needle = norm(q.trim());
   const list = critics.data
     .filter((c) => !needle || norm([c.name, c.nickname, c.city, c.publication].filter(Boolean).join(" ")).includes(needle))
@@ -55,7 +57,7 @@ export function Directory({ initialCritics, initialSettings }: { initialCritics:
           </ul>
         )}
       </div>
-      <p className="mt-6 text-sm text-muted">{list.length} critic{list.length === 1 ? "" : "s"}. Numbers in red show the current Top 10 position.</p>
+      <p className="mt-6 text-sm text-muted">{list.length} critic{list.length === 1 ? "" : "s"}. Numbers in red show the current Top 10 position{rankMode === "community" ? " (community vote)" : " (editorial ranking)"}.</p>
     </>
   );
 }
